@@ -4,6 +4,8 @@ import data from 'emoji-mart/data/apple.json'
 import { Emoji, BaseEmoji, NimblePicker } from 'emoji-mart'
 import Popover from '@material-ui/core/Popover'
 
+// 🤰🏻🤰🏾🤰🏽🤰🏻🤰🏽🤰🏻🤰🏻🤰🏿🤰🏼
+
 const CoverGrid = () => {
 	const [emojis, setEmojis] = useState<{ colons: string; native: string }[]>([
 		{ colons: ':pregnant_woman:', native: '🤰' },
@@ -53,33 +55,32 @@ const CoverGrid = () => {
 	}
 
 	const executeRequest = () => {
-		console.log(emojis)
+		
+    // let tempBody = ["🤰🏻","🤰🏾","🤰🏽","🤰🏻","🤰🏽","🤰🏻","🤰🏻","🤰🏿","🤰🏼","🤰🏽","🤰🏼","🤰🏻"]
+    let temp = [];
+    for (let i = 0; i < emojis.length; i++) {
+      temp.push(emojis[i].native)           
+    }    
+
 		const requestOptions = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(emojis)
+			body: JSON.stringify(temp)
 		}
 
 		fetch('/api/generate-cover', requestOptions)
 			.then(async res => {
-				// link.href = URL.createObjectURL(
-				//   new Blob([res.data], { type: "video/mp4" })
-				// );
-				// link.click();
-				const json = await res.json()
-				// const url = window.URL.createObjectURL(new Blob([json]))
-				// console.log(url)
-				// const link = document.createElement("a")
-				// link.href = url
-				// link.setAttribute("download", "file.png")
-				// document.body.appendChild(link)
-				// link.click()
-
+				const blob = await res.blob()
 				const link = document.createElement('a')
 				link.target = '_blank'
-				link.download = 'file.png'
-				link.href = URL.createObjectURL(new Blob([json], { type: 'image/png' }))
-				link.click()
+				link.download = 'clb.png'
+				link.href = URL.createObjectURL(new Blob([blob], { type: 'image/png' }))
+				
+        // download
+        link.click()
+
+        // open in new tab
+        // window.open(link.href,'_blank')
 			})
 			.catch(e => console.log(e))
 	}
