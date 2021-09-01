@@ -18,7 +18,7 @@ const canvas_height = 1600
 
 app.use("/", express.static(path.join(__dirname, "client")))
 
-app.post("/api/generate-cover", async (req, res) => {  
+app.post("/api/generate-cover", async (req, res) => {    
   const unicodes = req.body as string[]
   const canvas = createCanvas(canvas_width, canvas_height)
   const ctx = canvas.getContext("2d")
@@ -88,7 +88,7 @@ app.post("/api/generate-cover", async (req, res) => {
 							})
 					})
 					.catch((e) => {
-						console.log(e)
+						// console.log(e)
 						return res.sendStatus(404)
 					})
 			}
@@ -100,7 +100,7 @@ app.post("/api/generate-cover", async (req, res) => {
   readStream.end(buffer);  
   res.setHeader('Content-disposition', 'attachment; filename="clb.png"');
   res.setHeader('Content-type', 'image/png');
-  
+  // console.log(readStream.pipe(res))
   readStream.pipe(res);
 
 })
