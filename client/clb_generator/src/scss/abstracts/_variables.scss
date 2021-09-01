@@ -1,0 +1,16 @@
+// https://www.webtips.dev/how-i-theme-my-react-app-with-sass
+
+$themes: (
+	dark: (
+		base-background: #181818,
+		text-color: #fff,
+		// Button
+		button-text-color: #fff,
+	),
+	light: (
+		base-background: rgb(244, 244, 244),
+		text-color: black,
+		// Button
+		button-text-color: blue,
+	),
+);

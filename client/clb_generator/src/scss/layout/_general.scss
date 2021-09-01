@@ -1,0 +1,52 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Permanent Marker', 'Roboto', sans-serif;
+}
+
+html, body, #root, .App {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  @include theme-aware('background-color', 'base-background');
+  transition: all .2s ease-in-out;
+}
+
+.App {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  margin-bottom: 24px;
+}
+
+h3 {
+  font-family: 'Roboto';
+}
+
+button {
+  text-decoration: none;
+  font-family: 'Permanent Marker';
+  background-color: black; /* Green */ /*must be editable */
+  color: white; /*must be editable */
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover{
+    background-color: grey;
+  }
+
+  &:active{
+    transform: translate(0, 1px);
+    // top: 2px;
+  }  
+}
