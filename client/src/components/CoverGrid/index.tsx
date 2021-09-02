@@ -4,6 +4,8 @@ import data from 'emoji-mart/data/apple.json'
 import { Emoji, BaseEmoji, NimblePicker } from 'emoji-mart'
 import Popover from '@material-ui/core/Popover'
 
+import Button from '../Button'
+
 // 🤰🏻🤰🏾🤰🏽🤰🏻🤰🏽🤰🏻🤰🏻🤰🏿🤰🏼
 
 const CoverGrid = () => {
@@ -36,6 +38,8 @@ const CoverGrid = () => {
 			}
 		}
 
+		setSelected(-1)
+		setAnchorEl(null)
 		setEmojis(newEmojis)
 	}
 
@@ -55,17 +59,13 @@ const CoverGrid = () => {
 	}
 
 	const executeRequest = () => {
-		
-    // let tempBody = ["🤰🏻","🤰🏾","🤰🏽","🤰🏻","🤰🏽","🤰🏻","🤰🏻","🤰🏿","🤰🏼","🤰🏽","🤰🏼","🤰🏻"]
-    let temp = [];
-    for (let i = 0; i < emojis.length; i++) {
-      temp.push(emojis[i].native)           
-    }    
+		// let tempBody = ["🤰🏻","🤰🏾","🤰🏽","🤰🏻","🤰🏽","🤰🏻","🤰🏻","🤰🏿","🤰🏼","🤰🏽","🤰🏼","🤰🏻"]
+		const native_emojis = emojis.map(emoji => emoji.native)
 
 		const requestOptions = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(temp)
+			body: JSON.stringify(native_emojis)
 		}
 
 		fetch('/api/generate-cover', requestOptions)
@@ -75,12 +75,9 @@ const CoverGrid = () => {
 				link.target = '_blank'
 				link.download = 'clb.png'
 				link.href = URL.createObjectURL(new Blob([blob], { type: 'image/png' }))
-				
-        // download
-        link.click()
 
-        // open in new tab
-        // window.open(link.href,'_blank')
+				// download
+				link.click()
 			})
 			.catch(e => console.log(e))
 	}
@@ -91,57 +88,57 @@ const CoverGrid = () => {
 	return (
 		<>
 			<div className='grid-body'>
-				<div className='emoji-grid'>
-					{emojis.map((emoji, key) => (
-						<div className='emoji-container' key={key}>
-							<button
-								className={`emoji ${selected === key ? 'selected' : ''}`}
-								data-key={key}
-								onClick={handleOpen}
-							>
-								<Emoji emoji={emoji.colons} size={64} />
+				<div className='cover'>
+					<div className='emoji-grid'>
+						{emojis.map((emoji, key) => (
+							<div className='emoji-container' key={key}>
+								<button
+									className={`emoji-button ${
+										selected === key ? 'selected' : ''
+									}`}
+									data-key={key}
+									onClick={handleOpen}
+								>
+									<Emoji emoji={emoji.colons} size={64} sheetSize={64} />
+								</button>
+							</div>
+						))}
+						<Popover
+							id={id}
+							open={open}
+							anchorEl={anchorEl}
+							onClose={handleClose}
+							anchorOrigin={{
+								vertical: 'bottom',
+								horizontal: 'center'
+							}}
+							transformOrigin={{
+								vertical: 'top',
+								horizontal: 'center'
+							}}
+							PaperProps={{ elevation: 0, className: 'picker-popover' }}
+						>
+							<button className='remove-emoji' onClick={() => handleChange()}>
+								remove emoji
 							</button>
-						</div>
-					))}
-					<Popover
-						id={id}
-						open={open}
-						anchorEl={anchorEl}
-						onClose={handleClose}
-						anchorOrigin={{
-							vertical: 'bottom',
-							horizontal: 'center'
-						}}
-						transformOrigin={{
-							vertical: 'top',
-							horizontal: 'center'
-						}}
-						PaperProps={{ elevation: 0, className: 'picker-popover' }}
-					>
-						<button className='remove-emoji' onClick={() => handleChange()}>
-							remove emoji
-						</button>
-						<NimblePicker
-							showPreview={false}
-							emoji='smirk'
-							autoFocus
-							set='apple'
-							title={'Pick one loverboy'}
-							data={data as any}
-							onSelect={emoji => handleChange(emoji as BaseEmoji)}
-						/>
-					</Popover>
+							<NimblePicker
+								showPreview={false}
+								emoji='smirk'
+								set='apple'
+								title={'Pick one loverboy'}
+								data={data as any}
+								onSelect={emoji => handleChange(emoji as BaseEmoji)}
+							/>
+						</Popover>
+					</div>
 				</div>
 				<div className='actions'>
-					<button
-						className='remove-all-emojis'
-						onClick={() => handleRemoveAllEmojis()}
-					>
+					<Button fullWidth onClick={() => handleRemoveAllEmojis()}>
 						Remove all emojis
-					</button>
-					<button className='download' onClick={() => executeRequest()}>
+					</Button>
+					<Button fullWidth onClick={() => executeRequest()}>
 						Download cover
-					</button>
+					</Button>
 				</div>
 			</div>
 		</>

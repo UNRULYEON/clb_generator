@@ -5,12 +5,16 @@ $themes: (
 		base-background: #181818,
 		text-color: #fff,
 		// Button
-		button-text-color: #fff,
+		button-background: #424242,
+		button-text-color: white,
 	),
 	light: (
 		base-background: rgb(244, 244, 244),
 		text-color: black,
 		// Button
-		button-text-color: blue,
+		button-background: black,
+		button-text-color: white,
 	),
 );
+
+$font_family: 'Poppins', sans-serif

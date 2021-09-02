@@ -47,3 +47,10 @@ button {
 		// top: 2px;
 	}
 }
+
+
+.MuiButton-contained {
+	@include theme-aware('background-color', 'button-background', !important);
+	@include theme-aware('color', 'button-text-color', !important);
+	font-family: $font_family !important;
+}
