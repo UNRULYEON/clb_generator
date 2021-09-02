@@ -118,9 +118,13 @@ const CoverGrid = () => {
 							}}
 							PaperProps={{ elevation: 0, className: 'picker-popover' }}
 						>
-							<button className='remove-emoji' onClick={() => handleChange()}>
+							<Button
+								buttonDanger
+								className='remove-emoji'
+								onClick={() => handleChange()}
+							>
 								remove emoji
-							</button>
+							</Button>
 							<NimblePicker
 								showPreview={false}
 								emoji='smirk'
@@ -133,7 +137,11 @@ const CoverGrid = () => {
 					</div>
 				</div>
 				<div className='actions'>
-					<Button fullWidth onClick={() => handleRemoveAllEmojis()}>
+					<Button
+						buttonDanger
+						fullWidth
+						onClick={() => handleRemoveAllEmojis()}
+					>
 						Remove all emojis
 					</Button>
 					<Button fullWidth onClick={() => executeRequest()}>

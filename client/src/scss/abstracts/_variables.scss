@@ -7,14 +7,22 @@ $themes: (
 		// Button
 		button-background: #424242,
 		button-text-color: white,
+		danger-button-background: #c62828,
+		danger-button-text-color: white,
+		confirm-button-background: #2e7d32,
+		confirm-button-text-color: white
 	),
 	light: (
 		base-background: rgb(244, 244, 244),
 		text-color: black,
 		// Button
-		button-background: black,
+		button-background: #212121,
 		button-text-color: white,
-	),
+		danger-button-background: #c62828,
+		danger-button-text-color: white,
+		confirm-button-background: #2e7d32,
+		confirm-button-text-color: white
+	)
 );
 
-$font_family: 'Poppins', sans-serif
+$font_family: 'Poppins', sans-serif;

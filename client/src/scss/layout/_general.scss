@@ -15,6 +15,7 @@ body,
 
 body {
 	@include theme-aware('background-color', 'base-background');
+	@include theme-aware('color', 'text-color');
 	transition: all 0.2s ease-in-out;
 }
 
@@ -23,7 +24,12 @@ body {
 	flex-flow: column;
 	align-items: center;
 	justify-content: center;
-  margin-top: -5%;
+	// margin-top: -5%;
+}
+
+.theme-switch {
+	text-align: right;
+	margin-left: auto;
 }
 
 h1,
@@ -32,6 +38,7 @@ h3 {
 	margin: 0;
 	margin-bottom: 24px;
 	font-weight: 800;
+	text-align: center;
 }
 
 h3 {
@@ -43,14 +50,32 @@ button {
 	cursor: pointer;
 
 	&:active {
-		transform: translate(0, 1px);
+		// transform: translate(0, 1px);
 		// top: 2px;
 	}
 }
-
 
 .MuiButton-contained {
 	@include theme-aware('background-color', 'button-background', !important);
 	@include theme-aware('color', 'button-text-color', !important);
 	font-family: $font_family !important;
+	font-weight: 700 !important;
+}
+
+.MuiButton-contained.type-danger {
+	@include theme-aware(
+		'background-color',
+		'danger-button-background',
+		!important
+	);
+	@include theme-aware('color', 'danger-button-text-color', !important);
+}
+
+.MuiButton-contained.type-confirm {
+	@include theme-aware(
+		'background-color',
+		'confirm-button-background',
+		!important
+	);
+	@include theme-aware('color', 'confirm-button-text-color', !important);
 }

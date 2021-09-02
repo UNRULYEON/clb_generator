@@ -4,13 +4,18 @@ import {
 } from '@material-ui/core/Button'
 import { PropsWithChildren } from 'react'
 
-type ButtonProps = {} & MuiButtonProps
+type ButtonProps = {
+  buttonDanger?: boolean
+  buttonConfirm?: boolean
+} & MuiButtonProps
 
 const Button = (props: PropsWithChildren<ButtonProps>) => {
-	const { children } = props
+	const { children, buttonDanger, buttonConfirm, className, fullWidth, onClick } = props
+
+  const type = buttonDanger ? 'type-danger' : buttonConfirm ? 'type-confirm' : ''
 
 	return (
-		<MuiButton {...props} variant='contained' disableElevation>
+		<MuiButton fullWidth={fullWidth} onClick={onClick} size='large' className={`${className} ${type}`} variant='contained' disableElevation>
 			{children}
 		</MuiButton>
 	)
