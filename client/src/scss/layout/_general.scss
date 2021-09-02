@@ -2,7 +2,7 @@ html,
 body {
 	padding: 0;
 	margin: 0;
-	font-family: 'Permanent Marker', 'Roboto', sans-serif;
+	font-family: $font_family;
 }
 
 html,
@@ -31,10 +31,11 @@ h2,
 h3 {
 	margin: 0;
 	margin-bottom: 24px;
+	font-weight: 800;
 }
 
 h3 {
-	font-family: 'Roboto';
+	font-weight: 400;
 }
 
 button {
