@@ -127,6 +127,7 @@ const CoverGrid = () => {
 							</Button>
 							<NimblePicker
 								showPreview={false}
+								theme={'dark'}
 								emoji='smirk'
 								set='apple'
 								title={'Pick one loverboy'}
