@@ -22,6 +22,7 @@ const useTheme = () => {
 			: false
 	)
 
+	// Function that is passed to the listener
 	const mqListener = (e: { matches: boolean }) => {
 		if (userPreference.theme === 'system') {
 			setIsDarkTheme(e.matches)
@@ -41,6 +42,7 @@ const useTheme = () => {
 		)
 	}
 
+	// Add listener for device theme change
 	useEffect(() => {
 		const darkThemeMq = window.matchMedia('(prefers-color-scheme: dark)')
 		darkThemeMq.addEventListener('change', mqListener)

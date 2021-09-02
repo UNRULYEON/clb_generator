@@ -1,28 +1,54 @@
 import { useState } from 'react'
 import 'emoji-mart/css/emoji-mart.css'
 import data from 'emoji-mart/data/apple.json'
-import { Emoji, BaseEmoji, NimblePicker } from 'emoji-mart'
+import { Emoji, BaseEmoji, NimblePicker, emojiIndex } from 'emoji-mart'
 import Popover from '@material-ui/core/Popover'
 
 import Button from '../Button'
 
-// 🤰🏻🤰🏾🤰🏽🤰🏻🤰🏽🤰🏻🤰🏻🤰🏿🤰🏼
+type EmojiType = {
+	emojis: string[]
+}
+
+const randomEmojis = () => {
+	let result: { colons: string; native: string }[] = []
+	const categories = data.categories as EmojiType[]
+	let randomEmojis: string[] = []
+	let finalEmojis: string[] = []
+
+	categories.map(category => {
+		const emojis = category.emojis.slice(0, 20).map(emoji => emoji) //grab first 10 emojis for each category
+		// let everyEmoji = category.emojis.map(emoji_name => emoji_name) //grab all emojis
+		randomEmojis = [...randomEmojis, ...emojis]
+	})
+
+	randomEmojis.map(() => {
+		if (finalEmojis.length < 12) {
+			const emoji_string =
+				randomEmojis[Math.floor(Math.random() * randomEmojis.length)]
+
+			if (emoji_string) {
+				finalEmojis.push(emoji_string)
+			}
+		}
+	})
+
+	for (let i = 0; i < finalEmojis.length; i++) {
+		let temp = emojiIndex.search(finalEmojis[i]) as
+			| { colons: string; native: string }[]
+			| null
+		if (temp) {
+			result.push({ colons: temp[0].colons, native: temp[0].native })
+		}
+	}
+	
+	return result
+}
 
 const CoverGrid = () => {
-	const [emojis, setEmojis] = useState<{ colons: string; native: string }[]>([
-		{ colons: ':pregnant_woman:', native: '🤰' },
-		{ colons: ':pregnant_woman:', native: '🤰' },
-		{ colons: ':pregnant_woman:', native: '🤰' },
-		{ colons: ':pregnant_woman:', native: '🤰' },
-		{ colons: ':pregnant_woman:', native: '🤰' },
-		{ colons: ':pregnant_woman:', native: '🤰' },
-		{ colons: ':pregnant_woman:', native: '🤰' },
-		{ colons: ':pregnant_woman:', native: '🤰' },
-		{ colons: ':pregnant_woman:', native: '🤰' },
-		{ colons: ':pregnant_woman:', native: '🤰' },
-		{ colons: ':pregnant_woman:', native: '🤰' },
-		{ colons: ':pregnant_woman:', native: '🤰' }
-	])
+	const [emojis, setEmojis] = useState<{ colons: string; native: string }[]>(
+		randomEmojis()
+	)
 	const [selected, setSelected] = useState<number>(-1)
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
@@ -71,9 +97,10 @@ const CoverGrid = () => {
 		fetch('/api/generate-cover', requestOptions)
 			.then(async res => {
 				const blob = await res.blob()
+				let headertype = res.headers.get('Content-disposition')
 				const link = document.createElement('a')
 				link.target = '_blank'
-				link.download = 'clb.png'
+				link.download = `${headertype?.slice(22, headertype?.length - 1)}`
 				link.href = URL.createObjectURL(new Blob([blob], { type: 'image/png' }))
 
 				// download

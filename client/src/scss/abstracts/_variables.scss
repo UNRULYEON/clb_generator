@@ -4,6 +4,8 @@ $themes: (
 	dark: (
 		base-background: #181818,
 		text-color: #fff,
+		// Toggle
+		toggle-checked: #424242,
 		// Button
 		button-background: #424242,
 		button-text-color: white,
@@ -15,6 +17,8 @@ $themes: (
 	light: (
 		base-background: rgb(244, 244, 244),
 		text-color: black,
+		// Toggle
+		toggle-checked: #e0e0e0,
 		// Button
 		button-background: #212121,
 		button-text-color: white,

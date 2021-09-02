@@ -23,13 +23,14 @@ app.post("/api/generate-cover", async (req, res) => {
   const canvas = createCanvas(canvas_width, canvas_height)
   const ctx = canvas.getContext("2d")
 
-  if (unicodes.length <= 0) {
+  if (!unicodes.some(unicode => unicode.length > 0)){
     // KANYE
     ctx.fillStyle = "black"
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
     const buffer = canvas.toBuffer()
-    res.writeHead(200, { "Content-Type": `image/png` })
+    res.setHeader('Content-disposition', 'attachment; filename="DONDA.png"');
+    res.setHeader('Content-type', 'image/png');
     return res.end(buffer)
   }
 
@@ -98,7 +99,7 @@ app.post("/api/generate-cover", async (req, res) => {
   const buffer = canvas.toBuffer()
   const readStream = new stream.PassThrough()
   readStream.end(buffer);  
-  res.setHeader('Content-disposition', 'attachment; filename="clb.png"');
+  res.setHeader('Content-disposition', 'attachment; filename="CLB.png"');
   res.setHeader('Content-type', 'image/png');
   // console.log(readStream.pipe(res))
   readStream.pipe(res);
