@@ -29,8 +29,9 @@
   "scripts": {
     "clean": "rimraf dist/*",
     "copy-assets": "ts-node tools/copyAssets",
+    "build-frontend": "ts-node tools/buildFrontend",
     "tsc": "tsc",
-    "build": "npm-run-all clean tsc copy-assets",
+    "build": "npm-run-all clean tsc build-frontend copy-assets",
     "dev:start": "npm-run-all build start",
     "dev": "nodemon --watch src -e ts,ejs --exec npm run dev:start",
     "start": "node .",

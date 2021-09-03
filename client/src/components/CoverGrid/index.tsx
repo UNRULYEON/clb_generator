@@ -23,7 +23,7 @@ const randomEmojis = () => {
 		return (randomEmojis = [...randomEmojis, ...emojis])
 	})
 
-	randomEmojis.map(() => {
+	randomEmojis.forEach(() => {
 		if (finalEmojis.length < 12) {
 			const emoji_string =
 				randomEmojis[Math.floor(Math.random() * randomEmojis.length)]

@@ -1,4 +1,4 @@
 import * as shell from "shelljs";
 
-// Copy all the view templates
-// shell.cp( "-R", "src/client", "dist/" );
+shell.ls('.')
+shell.cp( "-R", "client/build", "dist/client" );

@@ -30,11 +30,8 @@ const useTheme = () => {
 	}
 
 	const updateTheme = (theme: userPreference['theme']) => {
-		if (userPreference.theme === 'system') {
-			setIsDarkTheme(getCurrentDeviceTheme())
-		} else {
-			setIsDarkTheme(theme === 'dark' ? true : false)
-		}
+		setIsDarkTheme(theme === 'dark' ? true : false)
+		userPreference.theme = theme
 
 		localStorage.setItem(
 			'user-preferences',
