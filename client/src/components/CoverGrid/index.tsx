@@ -62,7 +62,7 @@ const CoverGrid = () => {
 				colons: emoji.colons || '',
 				native: emoji.native || ''
 			}
-		}
+		} 
 
 		setSelected(-1)
 		setAnchorEl(null)
