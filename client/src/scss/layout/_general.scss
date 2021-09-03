@@ -3,20 +3,11 @@ body {
 	padding: 0;
 	margin: 0;
 	font-family: $font_family;
-	transition: all .2s ease-in-out;
+	transition: all 0.2s ease-in-out;
 }
 
 .App {
 	margin: 12px;
-	margin-top: 100px;
-
-	@media screen and (max-width: 770px) {
-		margin-top: 50px;
-	}
-
-	@media screen and (max-width: 450px) {
-		margin-top: 12px;
-	}
 }
 
 body {
@@ -35,9 +26,11 @@ body {
 .clb-logo {
 	width: 100%;
 	max-width: 300px;
+	margin-bottom: 24px;
 
 	@media screen and (max-width: 500px) {
 		max-width: 150px;
+		margin-bottom: 12px;
 	}
 }
 
@@ -45,7 +38,7 @@ h1,
 h2,
 h3 {
 	margin: 0;
-	margin-bottom: 24px;
+	margin-bottom: 12px;
 	font-weight: 800;
 	text-align: center;
 }
@@ -53,6 +46,7 @@ h3 {
 h2 {
 	font-weight: 400;
 	font-size: 1.25rem;
+	margin-bottom: 24px;
 }
 
 .credits {
@@ -72,7 +66,7 @@ h2 {
 		color: inherit;
 
 		svg {
-			margin-right: 6px
+			margin-right: 6px;
 		}
 	}
 }
@@ -90,11 +84,6 @@ h2 {
 button {
 	border: none;
 	cursor: pointer;
-
-	&:active {
-		// transform: translate(0, 1px);
-		// top: 2px;
-	}
 }
 
 .MuiButton-contained {
@@ -102,6 +91,17 @@ button {
 	@include theme-aware('color', 'button-text-color', !important);
 	font-family: $font_family !important;
 	font-weight: 700 !important;
+}
+
+.MuiButton-contained.Mui-disabled,
+.MuiButton-contained.type-danger.Mui-disabled,
+.MuiButton-contained.type-confirm.Mui-disabled {
+	@include theme-aware(
+		'background-color',
+		'button-background-disabled',
+		!important
+	);
+	@include theme-aware('color', 'button-text-color-disabled', !important);
 }
 
 .MuiButton-contained.type-danger {
@@ -120,4 +120,12 @@ button {
 		!important
 	);
 	@include theme-aware('color', 'confirm-button-text-color', !important);
+}
+
+.MuiCircularProgress-colorPrimary {
+	@include theme-aware('color', 'button-background', !important);
+
+	circle {
+		stroke-linecap: round;
+	}
 }

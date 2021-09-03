@@ -8,6 +8,7 @@
 	}
 
 	.cover {
+		position: relative;
 		width: 350px;
 		height: 350px;
 		margin-bottom: 24px;
@@ -22,6 +23,12 @@
 			margin-bottom: 24px;
 			width: 300px;
 			height: 300px;
+		}
+
+		.cover-loader {
+			color: black;
+			position: absolute;
+			z-index: 1;
 		}
 
 		.emoji-grid {
@@ -41,6 +48,8 @@
 				display: flex;
 				justify-content: center;
 				align-items: center;
+				opacity: 100%;
+				transition: all 0.2s ease-in-out;
 
 				.emoji-button {
 					width: 74px;
@@ -56,20 +65,20 @@
 						width: 70px;
 						height: 70px;
 					}
-
-					&:hover {
-						transition: all 0.2s ease-in-out;
-						background-color: rgba(0, 0, 0, 0.12);
-					}
-
-					.emoji {
-					}
 				}
 
-				.emoji.selected {
+				.emoji-button.empty-grid {
 					transition: all 0.2s ease-in-out;
 					background-color: rgba(0, 0, 0, 0.12);
 				}
+
+				.emoji-button.disabled {
+					cursor: auto;
+				}
+			}
+			.emoji-container.disable-emoji {
+				opacity: 15%;
+				transition: all 0.2s ease-in-out;
 			}
 		}
 	}

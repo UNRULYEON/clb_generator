@@ -5,17 +5,37 @@ import {
 import { PropsWithChildren } from 'react'
 
 type ButtonProps = {
-  buttonDanger?: boolean
-  buttonConfirm?: boolean
+	buttonDanger?: boolean
+	buttonConfirm?: boolean
 } & MuiButtonProps
 
 const Button = (props: PropsWithChildren<ButtonProps>) => {
-	const { children, buttonDanger, buttonConfirm, className, fullWidth, onClick } = props
+	const {
+		children,
+		buttonDanger,
+		buttonConfirm,
+		className,
+		fullWidth,
+		onClick,
+		disabled
+	} = props
 
-  const type = buttonDanger ? 'type-danger' : buttonConfirm ? 'type-confirm' : ''
+	const type = buttonDanger
+		? 'type-danger'
+		: buttonConfirm
+		? 'type-confirm'
+		: ''
 
 	return (
-		<MuiButton fullWidth={fullWidth} onClick={onClick} size='large' className={`${className} ${type}`} variant='contained' disableElevation>
+		<MuiButton
+			disabled={disabled}
+			fullWidth={fullWidth}
+			onClick={onClick}
+			size='large'
+			className={`${className ? className : ''} ${type}`}
+			variant='contained'
+			disableElevation
+		>
 			{children}
 		</MuiButton>
 	)
