@@ -85,11 +85,11 @@ function App() {
 			<div className='credits'>
 				<a href='https://github.com/DoritosXL'>
 					<GithubLogoSVG theme={isDarkTheme ? 'dark' : 'light'} />
-					Hakan Taskirmaz
+					DoritosXL
 				</a>
 				<a href='https://github.com/UNRULYEON'>
 					<GithubLogoSVG theme={isDarkTheme ? 'dark' : 'light'} />
-					Amar Kisoensingh
+					UNRULYEON
 				</a>
 			</div>
 			<div className='theme-switch'>

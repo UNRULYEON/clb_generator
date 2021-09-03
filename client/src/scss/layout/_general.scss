@@ -56,10 +56,6 @@ h2 {
 	gap: 12px;
 	font-weight: 700;
 
-	@media screen and (max-width: 400px) {
-		flex-flow: column;
-	}
-
 	a {
 		display: flex;
 		justify-content: center;
