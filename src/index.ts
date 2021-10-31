@@ -19,7 +19,8 @@ const canvas_height = 1600
 app.use("/", express.static(path.join(__dirname, "client")))
 
 app.post("/api/generate-cover", async (req, res) => {    
-  const unicodes = req.body as string[]
+  const unicodes = req.body.content as string[]
+  const backgroundColor = req.body.backgroundColor
   const canvas = createCanvas(canvas_width, canvas_height)
   const ctx = canvas.getContext("2d")
 
@@ -53,9 +54,10 @@ app.post("/api/generate-cover", async (req, res) => {
   })
 
   // DRAKE
-  ctx.fillStyle = "white"
+  // isWhiteBackground ? ctx.fillStyle = "white" : ctx.fillStyle = "black"
+  ctx.fillStyle = backgroundColor
   ctx.fillRect(0, 0, canvas.width, canvas.height)
-
+ 
   const locations = [
     { x: 149, y: 189 },
     { x: 498, y: 189 },
