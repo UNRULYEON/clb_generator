@@ -9,7 +9,7 @@ services:
       target: production
     restart: unless-stopped
     ports:
-      - 4001:4001
+      - 4001:8080
     command: yarn start
     labels:
       - traefik.enable=true
