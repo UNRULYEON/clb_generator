@@ -9,7 +9,7 @@ services:
       target: production
     restart: unless-stopped
     ports:
-      - 8080:8080
+      - 4001:4001
     command: yarn start
     labels:
       - traefik.enable=true
@@ -17,7 +17,7 @@ services:
       - traefik.http.routers.clb-generator.tls=true
       - traefik.http.routers.clb-generator.entrypoints=websecure
       - traefik.http.routers.clb-generator.tls.certresolver=certresolver
-      - traefik.http.services.clb-generator.loadbalancer.server.port=8080
+      - traefik.http.services.clb-generator.loadbalancer.server.port=4001
 
 networks:
   default:
