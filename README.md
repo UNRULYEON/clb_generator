@@ -7,6 +7,5 @@ Build with Express using the following dependencies:
 
 # Front-end
 Build in React with Typescript. See: [Client](https://github.com/DoritosXL/clb_generator/tree/main/client) 
-Dependencies:
+dependencies:
 * @material-ui
-* 
