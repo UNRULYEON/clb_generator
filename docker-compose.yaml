@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  clb-generator:
+    container_name: clb-generator
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    command: yarn start
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.clb-generator.rule=Host(`clbcover.com`)
+      - traefik.http.routers.clb-generator.tls=true
+      - traefik.http.routers.clb-generator.entrypoints=websecure
+      - traefik.http.routers.clb-generator.tls.certresolver=certresolver
+      - traefik.http.services.clb-generator.loadbalancer.server.port=8080
+
+networks:
+  default:
+    external:
+      name: traefik_default
